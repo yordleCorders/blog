@@ -1,10 +1,7 @@
 <?php
 
-
 class Blog
 {
-	protected $array = [];
-
 	public function index()
 	{
 		echo "Index Ok";
@@ -12,6 +9,7 @@ class Blog
 
 	public function create($array)
 	{
+		echo 'This are my array';
 		var_dump($array);
 	}
 }

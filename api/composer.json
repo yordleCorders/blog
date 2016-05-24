@@ -1,4 +1,11 @@
 {
+	"authors":[
+		{
+			"name"	: "Ma. Angelica B. Concepcion",
+			"email"	: "concepcionmaangelica@gmail.com"
+		}
+	],
+
 	"autoload":{
 
 		"psr-4":{
