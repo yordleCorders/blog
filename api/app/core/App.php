@@ -1,6 +1,5 @@
 <?php
 
-
 class App
 {
 
@@ -14,31 +13,29 @@ class App
 
 	function __construct()
 	{
+		$this->method = $this->getMethod($_SERVER['REQUEST_METHOD']);
+		
 		$this->url = $this->parseUrl();
 
 		$this->controller = $this->getController();
 
-		$this->method = $this->getMethod($_SERVER['REQUEST_METHOD']);
-
 		$this->params = $this->getParams();
 
-		call_user_func_array([$this->controller, $this->method], $this->params);
+		call_user_func([$this->controller, $this->method], $this->params);
 	}
 
 	public function parseUrl()
     {
-        if(isset($_GET['url']))
-        {
-            return $this->url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-        }
+        	parse_str($_SERVER['QUERY_STRING'], $array);
+        	return $array;
     }
 
 	public function getController()
 	{
-		if(file_exists('../app/Controllers/' . $this->url[0] . '.php'))
+		if(file_exists('../app/Controllers/' . $this->url['url'] . '.php'))
 		{
-			$this->controller = $this->url[0];
-			unset($this->url[0]);
+			$this->controller = $this->url['url'];
+			unset($this->url['url']);
 			require_once('../app/Controllers/' . $this->controller . '.php');
 			$this->controller = new $this->controller;
 			return $this->controller;
@@ -71,7 +68,7 @@ class App
 
 	public function getParams()
 	{
-		$this->params = $this->url ? array_values($this->url) :[];
+		$this->params = $this->url;
 		return $this->params;
 	}
 
