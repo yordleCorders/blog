@@ -13,13 +13,14 @@ class App
 
 	function __construct()
 	{
-		$this->method = $this->getMethod($_SERVER['REQUEST_METHOD']);
 		
 		$this->url = $this->parseUrl();
 
 		$this->controller = $this->getController();
 
 		$this->params = $this->getParams();
+
+		$this->method = $this->getMethod($_SERVER['REQUEST_METHOD']);
 
 		call_user_func([$this->controller, $this->method], $this->params);
 	}
@@ -51,12 +52,12 @@ class App
 				$this->method = 'index';
 				break;
 			case 'POST':
-				$this->method = 'create';
+				$this->method = 'store';
 				break;
 			case 'PUT':
 				$this->method = 'update';
 				break;
-			case 'DELTE':
+			case 'DELETE':
 				$this->method = 'delete';
 				break;
 			default:

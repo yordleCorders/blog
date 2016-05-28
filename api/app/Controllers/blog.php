@@ -1,15 +1,33 @@
 <?php
 
-class Blog
+class Blog extends Controller
 {
+
 	public function index()
 	{
-		echo "Index Ok";
+		echo User::whereNull('deleted_at')->get();
 	}	
 
-	public function create($array)
+	public function show($id)
 	{
-		echo 'This are my array';
-		var_dump($array);
+		echo User::where($id)->get();
 	}
+
+	public function store($blog)
+	{
+		return User::create($blog);
+	}
+
+	public function update($blog)
+	{
+		$id = $blog['id'];
+		unset($blog['id']);
+		return User::find($id)->update($blog);
+	}
+
+	public function delete($id)
+	{
+		return User::find(implode('',array_values($id)))->delete();
+	}
+
 }
