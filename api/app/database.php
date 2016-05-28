@@ -9,7 +9,7 @@ $capsule->addConnection([
 	'host'		=> 'localhost',
 	'username'	=> 'root',
 	'password'	=> 'root',
-	'database'	=> 'phonebook',
+	'database'	=> 'blog',
 	'charset'	=> 'utf8',
 	'collation'	=> 'utf8_unicode_ci', 
 	'prefix'	=>	''
