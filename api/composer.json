@@ -10,7 +10,11 @@
 
 		"psr-4":{
     	 	"Blog\\":"app"
-    	}
+    	},
+
+    	"classmap":[
+    		"app/Models"
+    	]
 	},
 	
 	"require": {
