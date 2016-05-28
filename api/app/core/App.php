@@ -49,6 +49,11 @@ class App
 		switch ($request)
 		{
 			case 'GET':
+				if(!empty($this->params))
+				{
+					$this->method = 'show';
+					break;
+				}
 				$this->method = 'index';
 				break;
 			case 'POST':
